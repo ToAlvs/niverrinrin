@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presente Romântico</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #fff1f2, #ffffff, #fffbe6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.6);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #c026d3; /* rose-700 */
+      margin-bottom: 1rem;
+    }
+
+    .message {
+      text-align: justify;
+      color: #4b5563; /* gray-700 */
+      white-space: pre-line;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .btn-reveal {
+      background-color: #c026d3;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn-reveal:active {
+      transform: scale(0.98);
+    }
+
+    .reveal-content {
+      margin-top: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-content.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-content img {
+      max-width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .reveal-content p {
+      margin-top: 0.5rem;
+      color: #6b7280; /* gray-500 */
+      font-size: 0.875rem;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #9ca3af; /* gray-400 */
+    }
+
+    .audio-control {
+      margin-top: 1rem;
+      background: none;
+      border: 1px solid #c026d3;
+      border-radius: 9999px;
+      color: #c026d3;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+
+    .audio-control:hover {
+      background-color: #fce7f3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🤍PARABÉNS NN🤍</h1>
+
+    <div class="message">
+      Parabéns, minha princesa, minha nn, minha rainha, minha deusa, minha Branca de Neve, minha ninja dos lábios de manga com leite e memória de elefante, minha italiana favorita.
+
+      Que o seu dia seja tão incrível quanto você é, e que esse novo ano te traga tudo o que você merece: paz, sorrisos, lasanhas, moquecas de camarão e momentos que te façam sentir o quanto você é única.
+
+      Hoje é o seu dia e eu só quero que ele seja cheio de bênçãos e alegrias. Você é uma mulher especial e importante para todos à sua volta, e pra mim não é diferente. Sua presença ilumina minha vida de um jeito único e apaixonante.
+
+      Desde o dia em que nos conhecemos, eu percebi que você teria o poder de transformar meus dias comuns em algo especial só por estar presente, e eu estava certo, mesmo quando o dia não vai bem basta pensar em você que tudo muda da água pro vinho.
+
+      Lembro que mais tarde vou ter você pra conversar, e isso já me deixa tranquilo, esperando ansiosamente pelo momento de falar com a mulher mais linda, mais divertida, mais mandona, que consegue me derreter com o sorriso lindo que ela tem e ainda me aguentar com as minhas gracinhas e humor levemente pesado. 
+      (Ainda bem que você foi jogar tênis dia 20 de dezembro, sim fui olhar 😘)
+
+      Com você na minha vida, o dia não precisa ser fantástico ele só precisa ter você. ❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+
+      Eu falei com a sua melhor amiga a IA pra fazer algo especial para esse dia, clica ai.
+    </div>
+
+    <button class="btn-reveal" id="revealBtn">Clique aqui QUANDO TIVER LIDO</button>
+
+    <div class="reveal-content" id="revealContent">
+      <img src="./nois.jpeg" alt="Revelação">
+      <p>🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍</p>
+    </div>
+
+    <button class="audio-control" id="audioBtn">Play / Pause</button>
+    <audio id="audio" src="./Azul.mp3" loop autoplay></audio>
+
+  </div>
+
+  <script>
+    const revealBtn = document.getElementById('revealBtn');
+    const revealContent = document.getElementById('revealContent');
+    const audio = document.getElementById('audio');
+    const audioBtn = document.getElementById('audioBtn');
+
+    revealBtn.addEventListener('click', () => {
+      revealContent.classList.add('show');
+      revealBtn.style.display = 'none';
+    });
+
+    audioBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+  </script>
+
+</body>
+</html>
