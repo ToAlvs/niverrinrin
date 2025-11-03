@@ -5,6 +5,246 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Presente Romântico</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;500;600&display=swap');
+
+    /* ===== FUNDO ANIMADO ===== */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #fff1f2, #ffe4e6, #fff8e1, #ffe6fa);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+      min-height: 100vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 0 1rem;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: sparkle 10s linear infinite;
+      z-index: 0;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    @keyframes sparkle {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-50px, -50px); }
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2.5rem 1.5rem;
+      box-shadow: 0 8px 30px rgba(255, 150, 180, 0.3);
+      border: 1.5px solid rgba(255, 192, 203, 0.5);
+      margin: 40px auto;
+      transition: all 0.3s ease;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      color: #d63384;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(255, 150, 200, 0.3);
+    }
+
+    .message {
+      text-align: justify;
+      color: #4b5563;
+      white-space: pre-line;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    /* ===== BOTÃO DE REVELAR ===== */
+    .btn-reveal {
+      display: block;
+      margin: 0 auto;
+      background: linear-gradient(90deg, #e11d48, #f472b6, #ec4899);
+      color: #fff;
+      padding: 0.9rem 1.6rem;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.1s, box-shadow 0.2s, background 0.4s;
+    }
+
+    .btn-reveal:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #f43f5e, #fb7185, #f9a8d4);
+    }
+
+    .btn-reveal:active {
+      transform: scale(0.98);
+    }
+
+    /* ===== REVELAÇÃO ===== */
+    .reveal-content {
+      margin-top: 1.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      text-align: center;
+    }
+
+    .reveal-content.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-content img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .reveal-content p {
+      margin-top: 0.8rem;
+      color: #d63384;
+      font-size: 1.2rem;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    /* ===== CONTROLE DE ÁUDIO ===== */
+    .audio-control {
+      display: block;
+      margin: 1.5rem auto 0 auto;
+      background: none;
+      border: 1px solid #d63384;
+      border-radius: 9999px;
+      color: #d63384;
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .audio-control:hover {
+      background-color: #ffe4e6;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.8rem 1.2rem;
+        margin: 25px auto;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .message {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .btn-reveal {
+        width: 100%;
+        font-size: 1rem;
+      }
+
+      .reveal-content img {
+        border-radius: 14px;
+      }
+
+      .reveal-content p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🤍 Parabéns NN 🤍</h1>
+
+    <button class="audio-control" id="audioBtn">Ouvir Azul - Gal Costa</button>
+    <audio id="audio" src="./Azul.mp3" loop autoplay></audio>
+
+    <div class="message">
+      Parabéns minha princesa, minha nn, minha rainha, minha deusa, minha Branca de Neve, minha ninja dos lábios de manga com leite e memória de elefante, minha italiana favorita.
+
+      Que o seu dia seja tão incrível quanto você é, e que esse novo ano te traga tudo o que você merece: paz, sorrisos, lasanhas, moquecas de camarão e momentos que te façam sentir o quanto você é única.
+
+      Hoje é o seu dia e eu só quero que ele seja cheio de bençãos e alegrias. Você é uma mulher especial e importante para todos a sua volta, e pra mim não é diferente. Sua presença ilumina minha vida de um jeito único e apaixonante.
+
+      Desde o dia em que nos conhecemos, eu percebi que você teria o poder de transformar meus dias comuns em algo especial só por estar presente, e eu estava certo, mesmo quando o dia não vai bem basta pensar em você que tudo muda da água pro vinho.
+
+      Lembro que mais tarde vou ter você pra conversar, e isso já me deixa tranquilo, esperando ansiosamente pelo momento de falar com a mulher mais linda, mais divertida, mais mandona, que consegue me derreter com o sorriso lindo que ela tem e ainda me aguentar com as minhas gracinhas e humor levemente pesado. 
+      (Ainda bem que você foi jogar tênis dia 20 de dezembro, sim fui olhar 😘)
+
+      Com você na minha vida, o dia não precisa ser fantástico ele só precisa ter você. ❤️
+
+      Eu falei com a sua amiga cúmplice de umas calúnias, a IA, pra fazer algo especial para esse dia. Clica ai 🙈
+    </div>
+
+    <button class="btn-reveal" id="revealBtn">Clique aqui QUANDO TIVER LIDO</button>
+
+    <div class="reveal-content" id="revealContent">
+      <img src="./nois.jpeg" alt="Revelação" />
+      <p>Beijosssss nn, muitos beijos💖</p>
+    </div>
+
+    
+  </div>
+
+  <script>
+    const revealBtn = document.getElementById('revealBtn');
+    const revealContent = document.getElementById('revealContent');
+    const audio = document.getElementById('audio');
+    const audioBtn = document.getElementById('audioBtn');
+
+    revealBtn.addEventListener('click', () => {
+      revealContent.classList.add('show');
+      revealBtn.style.display = 'none';
+    });
+
+    window.addEventListener('load', () => {
+      audio.play().catch(() => {
+        console.log('Autoplay bloqueado — toque manual necessário.');
+      });
+    });
+
+    audioBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+  </script>
+</body>
+  <!-- <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -158,5 +398,5 @@
     });
   </script>
 
-</body>
+</body> -->
 </html>
